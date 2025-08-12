@@ -19,7 +19,10 @@ defmodule Notes.Cli do
         IO.puts("-----------------")
 
       {:find, id} ->
-        IO.puts("Finding content for id : #{id}")
+        case Notes.find_note(id) do
+          {:error, :not_found} -> IO.puts("Note with id #{id} not found")
+          {:ok, note} -> IO.inspect(note, label: "Found note ##{id}")
+        end
 
       {:help} ->
         print_help()
