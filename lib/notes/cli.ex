@@ -1,4 +1,6 @@
 defmodule Notes.Cli do
+  alias Notes
+
   def main(args) do
     case parse_args(args) do
       {:add, content} ->
