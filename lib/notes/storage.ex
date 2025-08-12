@@ -1,6 +1,6 @@
 defmodule Notes.Storage do
   def save_notes(notes, file) do
-    File.mkdir!(file)
+    File.mkdir_p(Path.dirname(file))
     File.write!(file, Jason.encode!(notes, pretty: true))
   end
 
