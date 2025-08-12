@@ -29,7 +29,6 @@ notes-*.tar
 .vscode/
 
 # Generated files
-/notes
 /notes.bat
 /notes.json
 notes
