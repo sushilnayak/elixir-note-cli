@@ -5,20 +5,16 @@ defmodule NotesTest do
   @test_file "test_notes.json"
 
   setup do
-    # Clean up test file safely
     try do
       File.rm(@test_file)
     rescue
-      # File doesn't exist, that's fine
       File.Error -> :ok
     end
 
-    # Ensure cleanup after test
     on_exit(fn ->
       try do
         File.rm(@test_file)
       rescue
-        # File doesn't exist, that's fine
         File.Error -> :ok
       end
     end)

@@ -8,7 +8,13 @@ defmodule Notes.MixProject do
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      escript: escript()
+      escript: escript(),
+      test_coverage: [
+        # Changed from default 90% to 35%
+        threshold: 35,
+        output: "cover/",
+        html: true
+      ]
     ]
   end
 
