@@ -23,6 +23,6 @@ defmodule Notes do
   defp next_id([]), do: 1
 
   defp next_id(notes) do
-    Enum.max(notes |> Enum.map(& &1["id"])) + 1
+    (Enum.map(notes, & &1["id"]) |> Enum.max()) + 1
   end
 end

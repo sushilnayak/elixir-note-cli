@@ -22,10 +22,13 @@ notes-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
-/notes.json
-
 # Documentation
 /doc/
 
 # VSCode
 .vscode/
+
+# Generated files
+/notes
+/notes.bat
+/notes.json

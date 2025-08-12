@@ -4,10 +4,19 @@ defmodule Notes.Cli do
   def main(args) do
     case parse_args(args) do
       {:add, content} ->
-        IO.puts("Adding content : #{content}")
+        case Notes.add_note(content) do
+          {:ok, note} ->
+            IO.puts("New Note added with id=#{note["id"]} and content:#{note["content"]}")
+        end
 
       {:list, _} ->
-        IO.puts("Listing content")
+        IO.puts("--- All Notes ---")
+
+        Enum.each(Notes.list_notes(), fn note ->
+          IO.puts("#{note["id"]} - #{note["content"]}")
+        end)
+
+        IO.puts("-----------------")
 
       {:find, id} ->
         IO.puts("Finding content for id : #{id}")
