@@ -4,7 +4,7 @@ defmodule Notes.Cli do
   def main(args) do
     case parse_args(args) do
       {:add, content} ->
-        case Notes.add_note(content) do
+        case Notes.add_note(content, get_notes_file()) do
           {:ok, note} ->
             IO.puts("New Note added with id=#{note["id"]} and content:#{note["content"]}")
         end
@@ -12,14 +12,14 @@ defmodule Notes.Cli do
       {:list, _} ->
         IO.puts("--- All Notes ---")
 
-        Enum.each(Notes.list_notes(), fn note ->
+        Enum.each(Notes.list_notes(get_notes_file()), fn note ->
           IO.puts("#{note["id"]} - #{note["content"]}")
         end)
 
         IO.puts("-----------------")
 
       {:find, id} ->
-        case Notes.find_note(id) do
+        case Notes.find_note(id, get_notes_file()) do
           {:error, :not_found} -> IO.puts("Note with id #{id} not found")
           {:ok, note} -> IO.inspect(note, label: "Found note ##{id}")
         end
@@ -47,5 +47,9 @@ defmodule Notes.Cli do
       notes find <id>        # Finds a note by its ID
       notes list             # Lists all notes
     """)
+  end
+
+  defp get_notes_file do
+    System.get_env("NOTES_FILE") || "notes.json"
   end
 end
