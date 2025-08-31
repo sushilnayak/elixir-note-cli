@@ -1,4 +1,10 @@
 defmodule Notes do
+  @moduledoc """
+  Main module for managing notes.
+  
+  Provides functions to add, find, and list notes with persistent storage.
+  """
+  
   alias Notes.Storage
 
   def add_note(note, file \\ "notes.json") do

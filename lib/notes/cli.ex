@@ -1,4 +1,10 @@
 defmodule Notes.Cli do
+  @moduledoc """
+  Command-line interface for the Notes application.
+  
+  Handles parsing command-line arguments and executing corresponding note operations.
+  """
+  
   alias Notes
 
   def main(args) do
@@ -21,7 +27,7 @@ defmodule Notes.Cli do
       {:find, id} ->
         case Notes.find_note(id, get_notes_file()) do
           {:error, :not_found} -> IO.puts("Note with id #{id} not found")
-          {:ok, note} -> IO.inspect(note, label: "Found note ##{id}")
+          {:ok, note} -> IO.puts("Found note ##{id}: #{note["content"]}")
         end
 
       {:help} ->

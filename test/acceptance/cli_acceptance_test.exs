@@ -125,7 +125,7 @@ defmodule Notes.CliAcceptanceTest do
       
       # Verify no note was added (empty add should be rejected)
       notes = Notes.list_notes(@test_file)
-      assert length(notes) == 0
+      assert Enum.empty?(notes)
     end
   end
 end

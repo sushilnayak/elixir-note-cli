@@ -1,4 +1,10 @@
 defmodule Notes.Storage do
+  @moduledoc """
+  Handles persistent storage operations for notes.
+  
+  Provides functions to save and retrieve notes from JSON files.
+  """
+  
   def save_notes(notes, file) do
     File.mkdir_p(Path.dirname(file))
     File.write!(file, Jason.encode!(notes, pretty: true))
